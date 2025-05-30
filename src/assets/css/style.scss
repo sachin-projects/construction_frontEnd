@@ -1,0 +1,149 @@
+//Global colors
+$primary-color : #fe538d;
+$secondary-color : #FFB703;
+$text-color : #000;
+$text-white : #fff;
+$dark-background:#222725;
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    font-family: 'Rubik', sans-serif;
+}
+
+h1 {
+    font-size: 4.5em;
+}
+
+h2 {
+    font-size : 3em;
+}
+
+h3 {
+    font-size:2em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+a {
+    color:$text-white;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    padding: 15px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    text-decoration: none;
+    color: $text-white;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $secondary-color;
+        border: 1px solid $secondary-color;
+    }
+
+}
+
+.btn-secondary {
+    background-color: $secondary-color;
+    border: 1px solid $secondary-color;
+
+    padding: 15px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 8px;
+    text-decoration: none;
+    color: $text-white;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+    }
+
+}
+
+header {
+    nav {
+        .nav-link {
+            text-transform: uppercase;
+            font-size:1em;
+            color:$text-color;
+            font-weight:bold;
+            margin-left: 20px;
+        }
+        .logo {
+            text-transform: uppercase;
+            font-size: 1em;
+            font-weight: bold;
+            span {
+                color:$primary-color;
+            }
+        }
+    }
+}
+
+footer {
+    background-color: $dark-background;
+    color:$text-white;
+    h3 {
+        font-size: 1.2em;
+        color:$secondary-color;
+        font-weight: bold;
+    }
+
+    a {
+        color:$text-white;
+        text-decoration: none;
+    }
+
+    ul {
+        margin-left: 0;
+        padding-left: 0;
+        li {
+            list-style: none;
+            margin-left: 0;
+            color: $text-white;
+            font-size: 1.2em;
+        }
+    }    
+}
+
+.section-1 {
+    .hero {
+        background: linear-gradient(to right, #000c, #0000), url('../images/hero.jpg');
+        min-height: 800px;
+        color: $text-white;
+
+        span {
+            color:$secondary-color;
+            font-size: 1.5em;
+            font-weight: 500;
+        }
+    }
+    
+}
+
+.section-2 {
+    img {
+        border-radius: 40px;
+    }
+
+    span {
+        text-transform: uppercase;
+        color:$primary-color;
+        font-size: 1.2em;
+        font-weight: bold;
+        display: block;
+        padding-bottom: 10px;
+    }
+}
+
