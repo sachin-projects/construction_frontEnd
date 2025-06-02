@@ -1,11 +1,17 @@
 import React from 'react'
+import Header from '../common/Header'
+import Footer from '../common/Footer'
 
 const About = () => {
-  return (
-    <div>
-      <h1>About us</h1>
-    </div>
-  )
+    return (
+        <>
+            <Header />
+            <main>
+                <div>About</div>
+            </main>
+            <Footer />
+        </>
+    )
 }
 
 export default About
