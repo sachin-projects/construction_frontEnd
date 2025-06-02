@@ -4,6 +4,7 @@ $secondary-color : #FFB703;
 $text-color : #000;
 $text-white : #fff;
 $dark-background:#222725;
+$background-light:#d4d3d3;
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
@@ -20,7 +21,7 @@ h2 {
 }
 
 h3 {
-    font-size:2em;
+    font-size:1.5em;
 }
 
 p {
@@ -49,6 +50,21 @@ a {
         border: 1px solid $secondary-color;
     }
 
+}
+
+.bg-ligth {
+    background-color: $background-light;
+}
+
+.section-header {
+    span {
+        color:$primary-color;
+        font-size: 1.2em;
+        padding-bottom: 10px;
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
 }
 
 .btn-secondary {
@@ -148,3 +164,60 @@ footer {
     }
 }
 
+.section-3 {
+    .item {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 20px;
+        &:hover{
+            .service-body {
+                transform: translateY(0%);
+                .service-content {
+                        opacity: 1;   }
+            }
+        }
+        .service-image {
+            position: relative;
+            overflow: hidden;
+            img {
+                width: 100%;
+                border-radius: 40px;
+                aspect-ratio: 1/1.2;
+                object-fit: cover;
+            }
+            &:after{
+                content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    border-radius: 40px;
+                    background: linear-gradient(180deg, #d9d9d900, #d9d9d900 13.02%, #00000082 42.5%, #000000a1 70%,#000);                
+            }
+        }
+
+        .service-body {
+            color: $text-white;
+            position:absolute;
+            right: 30px;
+            left:30px;
+            bottom: 30px;
+            transform: translateY(80%);
+            transition: all 0.5s ease-in-out;
+
+            .service-content {
+                transition: all 0.5s ease-in-out;
+                opacity: 0;
+            }
+        }
+
+        }
+    }
+
+.section-4 {
+    .card {
+        border-radius: 40px;
+        margin-bottom: 20px;
+    }
+}
