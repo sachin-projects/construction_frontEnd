@@ -301,3 +301,54 @@ footer {
             }
     }
 }
+
+.section-7 {
+    .hero {
+            background: linear-gradient(to right, #000c, #0000), url('../images/hero.jpg');
+            min-height: 400px;
+            color: $text-white;
+    
+            span {
+                color: $secondary-color;
+                font-size: 1.5em;
+                font-weight: 500;
+            }
+        }
+} 
+
+.section-8 {
+    .card {
+            border-radius: 40px;
+    
+            img {
+                border-top-left-radius: 40px;
+                border-top-right-radius: 40px;
+            }
+    
+            a.title {
+                font-size: 1.4em;
+                text-decoration: none;
+                color: $primary-color;
+            }
+    
+            a.title:hover {
+                color: $secondary-color;
+            }
+    
+            a:hover {
+                color: $secondary-color;
+            }
+
+            .card-body {
+                .card-title {
+                    font-size: 1.5em;  
+                    font-weight: bold; 
+                }
+
+                .card-sub-title {
+                    font-size: 1.3em;
+                    color: $background-light;
+                }
+            }
+        }
+}
