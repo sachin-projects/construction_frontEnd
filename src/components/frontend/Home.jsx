@@ -416,6 +416,7 @@ const Home = () => {
                     </div>
                 </section>
 
+                {/* blogs */}
                 <section className="section-6 bg-light py-5">
                     <div className="container">
                         <div className='section-header text-center'>

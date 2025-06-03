@@ -14,10 +14,10 @@ const Header = () => {
                         <Nav className="ms-auto">
                             <Nav ><Link className='nav-link' to="/">Home</Link></Nav>
                             <Nav><Link className='nav-link' to="/about">About us</Link></Nav>
-                            <Nav ><Link className='nav-link' to="/services">Services</Link></Nav>
-                            <Nav><Link className='nav-link' to="/">Projects</Link></Nav>
-                            <Nav ><Link className='nav-link' to="/">Blogs</Link></Nav>
-                            <Nav><Link className='nav-link' to="/">Contact us</Link></Nav>
+                            <Nav ><Link className='nav-link' to="/service">Services</Link></Nav>
+                            <Nav><Link className='nav-link' to="/projects">Projects</Link></Nav>
+                            <Nav ><Link className='nav-link' to="/blogs">Blogs</Link></Nav>
+                            <Nav><Link className='nav-link' to="/contact">Contact us</Link></Nav>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

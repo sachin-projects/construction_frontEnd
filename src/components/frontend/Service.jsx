@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
-import Hero from './Hero'
+import Header from '../common/Header'
+import Footer from '../common/Footer'
+import Hero from '../common/Hero';
 import ServiceImg from '../../assets/images/construction1.jpg';
 
 const Services = () => {
@@ -14,7 +14,7 @@ const Services = () => {
                 text: 'We excel at transforming visions into reality<br />through outstanding craftsmanship and precise.'
             }} />
 
-            <section className='section-3 bg-ligth py-5'>
+            <section className='section-3 py-5'>
                 <div className="container py-5">
                     <div className='section-header text-center'>
                         <span>Our Services</span>
