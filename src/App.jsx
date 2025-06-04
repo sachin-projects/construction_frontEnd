@@ -7,12 +7,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Projects from './components/frontend/Projects';
 import Blogs from './components/frontend/Blogs';
 import ContactUs from './components/frontend/ContactUs';
+import Login from './components/backend/Login';
+import Dashboard from './components/backend/Dashboard';
+import RequireAuth from './components/common/RequireAuth';
 
 
 
 function App() {
-
-
   return (
     <>
       <BrowserRouter>
@@ -23,8 +24,16 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin/dashboard" element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          } />
         </Routes>
       </BrowserRouter>
+
+
     </>
   )
 }

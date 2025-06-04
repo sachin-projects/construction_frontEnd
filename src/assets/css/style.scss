@@ -361,3 +361,34 @@ footer {
         // }
     }
 }
+
+.login-form {
+    .card {
+        width:450px;
+    }
+}
+
+.dashboard {
+    .card {
+        min-height: 400px;
+    }
+}
+
+.sidebar{
+    ul {
+        list-style: none;
+        margin-left: -30px;
+
+        li { 
+            padding-left: -20px;
+            a{
+                padding: 10px 0px;
+                
+                display: block;
+                color: $text-color;
+                text-decoration: none;
+                border-bottom: 1px solid rgba(0,0,0,0.80);
+            }
+        }
+    }
+}
