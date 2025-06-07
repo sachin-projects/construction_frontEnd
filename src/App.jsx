@@ -12,6 +12,7 @@ import Dashboard from './components/backend/Dashboard';
 import RequireAuth from './components/common/RequireAuth';
 import { default as ShowServices } from './components/backend/services/show';
 import { default as CreateServices } from './components/backend/services/Create';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -47,7 +48,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-
+      <ToastContainer />
 
     </>
   )
