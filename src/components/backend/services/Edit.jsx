@@ -2,26 +2,28 @@ import React, { useState, useRef, useMemo } from 'react'
 import Header from '../../common/Header'
 import Footer from '../../common/Footer'
 import Sidebar from '../../common/SideBar'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useForm } from "react-hook-form";
-import { apiUrl, token } from '../../common/http';
+import { apiUrl, fileUrl, token } from '../../common/http';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import JoditEditor from 'jodit-react';
 
 
 
-const Create = ({ placeholder }) => {
+const Edit = ({ placeholder }) => {
 
     const editor = useRef(null);
     const [content, setContent] = useState('');
+    const [service, setService] = useState(null);
     const [isdisable, setIsDisable] = useState(false);
     const [imageId, setImageId] = useState(null);
+    const params = useParams();
 
 
     const config = useMemo(() => ({
         readonly: false, // all options from https://xdsoft.net/jodit/docs/,
-        placeholder: placeholder || 'Content...'
+        placeholder: placeholder || ''
     }),
         [placeholder]
     );
@@ -31,12 +33,36 @@ const Create = ({ placeholder }) => {
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        defaultValues: async () => {
+            const res = await fetch(apiUrl + 'services/' + params.id,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': `Bearer ${token()}`,
+                    }
+                });
+            const result = await res.json();
+            console.log(result.data[0].id);
+
+            setContent(result.data[0].content);
+            setService(result.data[0].image);
+            console.log(service);
+            return {
+                title: result.data[0].title,
+                slug: result.data[0].slug,
+                short_desc: result.data[0].short_desc,
+
+            }
+        }
+    });
 
     const navitage = useNavigate();
 
     const onSubmit = async (data) => {
-        const newData = { ...data, "content": content, "image": imageId }
+        const newData = { ...data, "content": content, "imageId": imageId }
         console.log(data);
         const res = await fetch(apiUrl + 'services', {
             method: 'POST',
@@ -101,7 +127,7 @@ const Create = ({ placeholder }) => {
                             <div className='card shadow border-0'>
                                 <div className='card-body p-4'>
                                     <div className='d-flex justify-content-between'>
-                                        <h4 className='h5'>Services/Create</h4>
+                                        <h4 className='h5'>Services/Edit</h4>
                                         <Link className='btn-primary small' to="/admin/services">Back</Link>
                                     </div>
                                     <hr />
@@ -157,6 +183,7 @@ const Create = ({ placeholder }) => {
                                         <div className='mb-3'>
                                             <label htmlFor='' className='form-label'>Status</label>
                                             <input onChange={handleFile} type="file" className="form-control" id="" />
+
                                         </div>
 
                                         <div className='mb-3'>
@@ -186,4 +213,4 @@ const Create = ({ placeholder }) => {
     )
 }
 
-export default Create;
+export default Edit;

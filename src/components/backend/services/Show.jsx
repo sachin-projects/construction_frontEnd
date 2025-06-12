@@ -67,8 +67,8 @@ const Show = () => {
                                                             <td>{item.slug}</td>
                                                             <td>{item.status == 1 ? 'Active' : 'Block'}</td>
                                                             <td>
-                                                                <a href="#" className='btn-primary small'>Edit</a>
-                                                                <a href="#" className='btn-secondary small ms-2'>Delete</a>
+                                                                <Link to={`/admin/service/edit/${item.id}`} className='btn-primary small'>Edit</Link>
+                                                                <Link href="#" className='btn-secondary small ms-2'>Delete</Link>
                                                             </td>
                                                         </tr>
                                                     )
