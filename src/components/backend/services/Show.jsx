@@ -3,7 +3,8 @@ import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import Sidebar from '../../common/SideBar';
 import { apiUrl, token } from '../../common/http';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Show = () => {
 
@@ -22,6 +23,34 @@ const Show = () => {
         setServices(result.data);
         console.log(result);
     }
+
+    const deleteService = async (id) => {
+        if (confirm('Are you sure to delete this service?')) {
+            const res = await fetch(apiUrl + 'services/' + id, {
+                method: 'DELETE',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token()}`,
+                }
+            })
+
+            const result = await res.json();
+            console.log(result);
+
+            if (result.status == true) {
+                const newServices = services.filter(service => service.id != id);
+                setServices(newServices);
+                toast.success(result.message);
+
+            }
+        }
+
+
+    }
+
+
+
 
     useEffect(() => {
         fetchServices();
@@ -68,7 +97,7 @@ const Show = () => {
                                                             <td>{item.status == 1 ? 'Active' : 'Block'}</td>
                                                             <td>
                                                                 <Link to={`/admin/service/edit/${item.id}`} className='btn-primary small'>Edit</Link>
-                                                                <Link href="#" className='btn-secondary small ms-2'>Delete</Link>
+                                                                <Link onClick={() => { deleteService(item.id) }} className='btn-secondary small ms-2'>Delete</Link>
                                                             </td>
                                                         </tr>
                                                     )

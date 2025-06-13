@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from 'react'
+import React, { useState, useRef, useMemo, useEffect } from 'react'
 import Header from '../../common/Header'
 import Footer from '../../common/Footer'
 import Sidebar from '../../common/SideBar'
@@ -15,11 +15,28 @@ const Edit = ({ placeholder }) => {
 
     const editor = useRef(null);
     const [content, setContent] = useState('');
-    const [service, setService] = useState(null);
+    let [service, setService] = useState();
     const [isdisable, setIsDisable] = useState(false);
     const [imageId, setImageId] = useState(null);
     const params = useParams();
 
+    const imageData = async () => {
+        const eUresult = await fetch(apiUrl + 'services/' + params.id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+                'Authorization': `Bearer ${token()}`,
+            }
+        });
+
+        const result = await eUresult.json();
+        setService(result.data[0]['image']);
+    }
+
+    useEffect(() => {
+        imageData();
+    }, [service]);
 
     const config = useMemo(() => ({
         readonly: false, // all options from https://xdsoft.net/jodit/docs/,
@@ -48,12 +65,12 @@ const Edit = ({ placeholder }) => {
             console.log(result.data[0].id);
 
             setContent(result.data[0].content);
-            setService(result.data[0].image);
-            console.log(service);
+
             return {
                 title: result.data[0].title,
                 slug: result.data[0].slug,
                 short_desc: result.data[0].short_desc,
+                status: result.data[0].status,
 
             }
         }
@@ -62,10 +79,10 @@ const Edit = ({ placeholder }) => {
     const navitage = useNavigate();
 
     const onSubmit = async (data) => {
-        const newData = { ...data, "content": content, "imageId": imageId }
+        const newData = { ...data, "content": content, "image": imageId }
         console.log(data);
-        const res = await fetch(apiUrl + 'services', {
-            method: 'POST',
+        const res = await fetch(apiUrl + 'services/' + params.id, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -183,8 +200,12 @@ const Edit = ({ placeholder }) => {
                                         <div className='mb-3'>
                                             <label htmlFor='' className='form-label'>Status</label>
                                             <input onChange={handleFile} type="file" className="form-control" id="" />
-
+                                            {
+                                                service ? <img src={fileUrl + 'uploads/temp/' + service} style={{ 'width': '25%' }} /> : ''
+                                            }
                                         </div>
+
+
 
                                         <div className='mb-3'>
                                             <label htmlFor='' className='form-label'>Status</label>
