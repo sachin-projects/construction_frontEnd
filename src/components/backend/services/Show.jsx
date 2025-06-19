@@ -111,6 +111,7 @@ const Show = () => {
                     </div>
                 </div>
             </main>
+            <ToastContainer />
             <Footer />
 
 

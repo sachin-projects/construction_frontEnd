@@ -65,6 +65,8 @@ const Create = ({ placeholder }) => {
         const file = e.target.files[0];
         formData.append('image', file);
 
+        setIsDisable(true);
+
         await fetch(apiUrl + 'temp-images', {
             method: 'POST',
             headers: {
@@ -83,6 +85,8 @@ const Create = ({ placeholder }) => {
                     console.log(imageId);
                 }
             })
+
+        setIsDisable(false);
     }
 
     return (
