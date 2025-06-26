@@ -12,7 +12,7 @@ const Sidebar = () => {
                 <ul>
                     <li><Link to="/admin/dashboard">Dashboard</Link></li>
                     <li><Link to="/admin/services">Services</Link></li>
-                    <li><Link to="/">Projects</Link></li>
+                    <li><Link to="/admin/projects">Projects</Link></li>
                     <li><Link to="/">Articales</Link></li>
                 </ul>
                 <button className='btn-primary small' onClick={logout}>Logout</button>

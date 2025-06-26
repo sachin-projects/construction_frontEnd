@@ -13,6 +13,8 @@ import RequireAuth from './components/common/RequireAuth';
 import { default as ShowServices } from './components/backend/services/show';
 import { default as CreateServices } from './components/backend/services/Create';
 import { default as EditServices } from './components/backend/services/Edit';
+
+import { default as ShowProjects } from './components/backend/projects/show';
 import { ToastContainer } from 'react-toastify';
 
 
@@ -53,6 +55,11 @@ function App() {
             </RequireAuth>
           } />
 
+          <Route path="/admin/projects" element={
+            <RequireAuth>
+              <ShowProjects />
+            </RequireAuth>
+          } />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
