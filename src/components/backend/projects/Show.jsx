@@ -5,6 +5,7 @@ import Footer from '../../common/Footer';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { apiUrl, token } from '../../common/http';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Show = () => {
 
@@ -29,9 +30,29 @@ const Show = () => {
         fetchProjects();
     }, []);
 
-    const deleteProjects = (id) => {
-        let ids = id;
+    const deleteProjects = async (id) => {
+        if (confirm('Are you sure to delete this Project?')) {
+            const res = await fetch(apiUrl + 'projects/' + id, {
+                method: 'DELETE',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token()}`,
+                }
+            })
+
+            const result = await res.json();
+            console.log(result);
+
+            if (result.status == true) {
+                const newProjects = projects.filter(projects => projects.id != id);
+                setProjects(newProjects);
+                toast.success(result.message);
+
+            }
+        }
     }
+
     return (
         <>
             <Header />
@@ -49,7 +70,7 @@ const Show = () => {
                                 <div className='card-body p-4'>
                                     <div className='d-flex justify-content-between'>
                                         <h4 className='h5'>Projects</h4>
-                                        <Link className='btn-primary small' to="/admin/services/create">Create</Link>
+                                        <Link className='btn-primary small' to="/admin/projects/create">Create</Link>
                                     </div>
                                     <hr />
                                     <table className='table table-striped'>
@@ -58,12 +79,12 @@ const Show = () => {
                                                 <th>ID</th>
                                                 <th>Title</th>
                                                 <th>Slug</th>
-                                                <th>Short Desc</th>
-                                                <th>Content</th>
+                                                {/* <th>Short Desc</th> */}
+                                                {/* <th>Content</th> */}
                                                 <th>Construction Type</th>
                                                 <th>Sector</th>
                                                 <th>Location</th>
-                                                <th>Image</th>
+                                                {/* <th>Image</th> */}
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -76,12 +97,12 @@ const Show = () => {
                                                             <td>{item.id}</td>
                                                             <td>{item.title}</td>
                                                             <td>{item.slug}</td>
-                                                            <td>{item.short_desc}</td>
-                                                            <td>{item.content}</td>
+                                                            {/* <td>{item.short_desc}</td> */}
+                                                            {/* {<td>{item.content}</td>} */}
                                                             <td>{item.construction_type}</td>
                                                             <td>{item.sector}</td>
                                                             <td>{item.location}</td>
-                                                            <td>{item.image}</td>
+                                                            {/* <td>{item.image}</td> */}
                                                             <td>{item.status == 1 ? 'Active' : 'Block'}</td>
                                                             <td>
                                                                 <Link to={`/admin/service/edit/${item.id}`} className='btn-primary small'>Edit</Link>
